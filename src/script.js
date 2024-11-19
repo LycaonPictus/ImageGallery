@@ -6,7 +6,7 @@ console.log(favs);
 
 function login()
 {
-	window.open("https://unsplash.com/oauth/authorize?client_id=W5On_0L6r4sWh0FbbMaV4Wo_sQrwYHpA5R9z9fkGKVs&redirect_uri=https://image-gallery-eosin-one.vercel.app&response_type=code&scope=public read_photos");
+	window.location = "https://unsplash.com/oauth/authorize?client_id=W5On_0L6r4sWh0FbbMaV4Wo_sQrwYHpA5R9z9fkGKVs&redirect_uri=localhost/callback&response_type=code&scope=public read_photos";
 }
 
 let token = "";
