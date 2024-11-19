@@ -4,7 +4,7 @@ if (!favs)
 	favs = [];
 console.log(favs);
 
-window.open("https://unsplash.com/oauth/authorize?client_id=W5On_0L6r4sWh0FbbMaV4Wo_sQrwYHpA5R9z9fkGKVs&redirect_uri=localhost:8080&response_type=code&scope=public read_photos");
+window.open("https://unsplash.com/oauth/authorize?client_id=W5On_0L6r4sWh0FbbMaV4Wo_sQrwYHpA5R9z9fkGKVs&redirect_uri=https://image-gallery-eosin-one.vercel.app&response_type=code&scope=public read_photos");
 
 let token = "";
 let auth_rq = new XMLHttpRequest();
