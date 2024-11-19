@@ -1,0 +1,86 @@
+#header
+{
+	height: 3.5em;
+	background-color: rgb(38, 38, 117);
+	color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:space-between;
+}
+
+#logo
+{
+	padding:0.5em;
+	font-size: 1.3em;
+}
+
+#login
+{
+	padding:1em;
+}
+
+#search
+{
+	width: 100%;
+	display:flex;
+	padding: 1em;
+	justify-content: center;
+}
+
+#search_input
+{
+	width: 70%;
+	height: 2em;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+	padding: 0.5em;
+}
+
+/* Elementos de la galería */
+.gallery-item {
+    flex: 1 1 calc(25% - 15px); /* Ajusta el tamaño de los elementos */
+    max-width: calc(25% - 15px); /* Máximo tamaño */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Efectos hover */
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .gallery-item {
+        flex: 1 1 calc(50% - 15px); /* 2 columnas en pantallas medianas */
+        max-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        flex: 1 1 100%; /* 1 columna en pantallas pequeñas */
+        max-width: 100%;
+    }
+}
+
+body
+{
+	margin: 0;
+}
