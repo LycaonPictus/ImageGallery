@@ -71,10 +71,21 @@
 }
 
 .gallery-item img {
+	position: absolute;
     width: 100%;
+	top:0;
+	left:0;
     height: auto;
     display: block;
     object-fit: cover;
+}
+
+.gallery-item img.star
+{
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 10%;
 }
 
 /* Efectos hover */

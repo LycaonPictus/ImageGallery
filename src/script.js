@@ -71,7 +71,7 @@ function getImages(query, page) {
 		}
 		else if (data.results)
 			data.results.forEach(element => {
-				document.getElementById("gallery").innerHTML += `<div class="gallery-item"><img src="${element.urls.full}" alt="${element.alt_description || ''}"></div>`;
+				document.getElementById("gallery").innerHTML += `<div class="gallery-item"><img class="star" src="star.png"><img src="${element.urls.full}" alt="${element.alt_description || ''}"></div>`;
 			});
     })
     .catch(error => console.error('Error:', error));
