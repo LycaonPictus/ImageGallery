@@ -17,7 +17,10 @@
 
 #login
 {
-	padding:1em;
+	margin:1em;
+	padding: 0.3em;
+	background-color: transparent;
+	color: white;
 }
 
 #search
@@ -34,6 +37,19 @@
 	height: 2em;
 }
 
+#navigation
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 1em;
+}
+
+#navigation #nav-current
+{
+	background-color: gray;
+}
+
 #gallery {
     display: flex;
     flex-wrap: wrap;
@@ -45,11 +61,13 @@
 /* Elementos de la galería */
 .gallery-item {
     flex: 1 1 calc(25% - 15px); /* Ajusta el tamaño de los elementos */
-    max-width: calc(25% - 15px); /* Máximo tamaño */
+    width: calc(25% - 15px); /* Máximo tamaño */
+	height:max-content;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border: 1px solid gray;
 }
 
 .gallery-item img {

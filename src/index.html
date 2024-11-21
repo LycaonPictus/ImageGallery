@@ -10,25 +10,24 @@
 <body>
 	<div id="header">
 		<span id="logo">Image Gallery</span>
-		<input type="button" id="login" onclick="login()" value="Login">
-		<span id="login_arrow"></span>
+		<div id="header_right"></div>
 	</div>
 	<div id="search">
-		<input id="search_input" type="text" placeholder="Type a keyword to start searching...">
+		<input id="search_input" type="text" onchange="navSelect(1, 30);" placeholder="Type a keyword to start searching...">
+	</div>
+	<div id="navigation">
+		<input type="button" id="nav-first" value="1" onclick="navSelect(this.value, 30);">
+		<input type="button" id="nav-second" value="2" onclick="navSelect(this.value, 30);">
+		<span id ="navetc1">...</span>
+		<input type="button" id="nav-prev" value="4" onclick="navSelect(this.value, 30);">
+		<input type="button" id="nav-current" value="5" onclick="navSelect(this.value, 30);">
+		<input type="button" id="nav-next" value="6" onclick="navSelect(this.value, 30);">
+		<span id ="navetc2">...</span>
+		<input type="button" id="nav-last-prev" value="29" onclick="navSelect(this.value, 30);">
+		<input type="button" id="nav-last" value="30" onclick="navSelect(this.value, 30);">
 	</div>
 	<div id="gallery">
-		<div class="gallery-item">
-			<img src="https://www.clarin.com/img/2024/06/03/FiD7m9EmF_1256x620__1.jpg">
-		</div>
-		<div class="gallery-item">
-			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHY3G5_CbIRE2j_WKHOdqQbTRmfE_52X6DMw&s">
-		</div>
-		<div class="gallery-item">
-			<img src="https://images.squarespace-cdn.com/content/v1/663aa838f99df73a91eae357/1715329799597-FQ9E7J4BLOPQ1T2PCMGN/Quokka.jpeg?format=750w">
-		</div>
-		<div class="gallery-item">
-			<img src="https://www.clarin.com/img/2024/06/03/FiD7m9EmF_1256x620__1.jpg">
-		</div>
+		
 	</div>
 </body>
 </html>
