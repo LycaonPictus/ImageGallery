@@ -3,7 +3,10 @@
 if (!favs)
 	favs = [];
 console.log(favs); */
-
+let favjson = localStorage.getItem("unsplash_fav");
+if (!favjson)
+	favjson = "[]";
+let favs = JSON.parse(favjson);
 let onclickf;
 let log;
 let header_right = document.getElementById("header_right");
@@ -71,7 +74,7 @@ function getImages(query, page) {
 		}
 		else if (data.results)
 			data.results.forEach(element => {
-				document.getElementById("gallery").innerHTML += `<div class="gallery-item"><img class="star" src="star.png"><img src="${element.urls.full}" alt="${element.alt_description || ''}"></div>`;
+				document.getElementById("gallery").innerHTML += `<div class="gallery-item"><img class="img" src="${element.urls.full}" alt="${element.alt_description || ''}">`;
 			});
     })
     .catch(error => console.error('Error:', error));
@@ -104,3 +107,32 @@ function navSelect(index, max)
 }
 
 navSelect(0, 30);
+
+function toggleFavorite(element)
+{
+	for (let i = 0; i < favs.length ; i++)
+	{
+		if (favs[i].user_id == localStorage.getItem("unsplash_username"))
+		{
+			for (let j = 0; j < favs.length ; j++)
+			{
+				if (favs[i].f[j] == element.src)
+				{
+					favs[i].f.splice(j, 1);
+					saveFavs();
+					return;
+				}
+			}
+			favs[i].f.push(element.src);
+			saveFavs();
+			return ;
+		}
+	}
+	favs.push({"user_id": localStorage.getItem("unsplash_username"), "f": [element.src]});
+	saveFavs();
+}
+
+function saveFavs()
+{
+	localStorage.setItem("unsplash_fav", JSON.stringify(favs));
+}
