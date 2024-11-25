@@ -1,16 +1,47 @@
 
-/* let favs = window.localStorage.getItem("image_gallery_favs");
-if (!favs)
-	favs = [];
-console.log(favs); */
 let favjson = localStorage.getItem("unsplash_fav");
 if (!favjson)
 	favjson = "[]";
-let favs = JSON.parse(favjson);
+let allfavs = JSON.parse(favjson);
+let userfavs = getUserFavorites();
 let onclickf;
 let log;
 let header_right = document.getElementById("header_right");
 let last_query;
+
+function getUserFavorites()
+{
+	if (!localStorage.getItem("unsplash_username"))
+		return [];
+	let founduser = allfavs.find((obj)=>{return obj.user_id == localStorage.getItem("unsplash_username")});	
+	if (!founduser)
+		return [];
+	return founduser.f;
+}
+
+function isFavorite(id)
+{
+	let foundfav = userfavs.find((favid)=>{return favid == id});
+	if (foundfav)
+		return 1;
+	else
+		return 0;
+}
+
+function addFavorite(id)
+{
+	if (!isFavorite(id))
+		userfavs.push(id);
+	saveFavs();
+}
+
+function removeFavorite(id)
+{
+	let index = userfavs.findIndex((fav)=>{return fav == id});
+	if (index != -1)
+		userfavs.splice(index, 1);
+	saveFavs();
+}
 
 if (localStorage.getItem("unsplash_username"))
 {
@@ -32,6 +63,7 @@ function logout()
 		localStorage.removeItem("unsplash_access_token");
 		localStorage.removeItem("unsplash_user_id");
 		localStorage.removeItem("unsplash_username");
+		localStorage.removeItem("unsplash_fav");
 		document.location = "http://localhost:8080";
 	}
 }
@@ -73,8 +105,12 @@ function getImages(query, page) {
 			return ;
 		}
 		else if (data.results)
-			data.results.forEach(element => {
-				document.getElementById("gallery").innerHTML += `<div class="gallery-item"><img class="img" src="${element.urls.full}" alt="${element.alt_description || ''}">`;
+			data.results.forEach((result) =>
+			{
+				let favdisplay = "none";
+				if (isFavorite(result.id))
+					favdisplay = "block";
+				document.getElementById("gallery").innerHTML += `<div class="gallery-item" onclick="toggleFavorite(this)"><img class="star" style="display:${favdisplay}" src="star.png"><img class="img" data-id="${result.id}" src="${result.urls.full}" alt="${result.alt_description || ''}"></div>`;
 			});
     })
     .catch(error => console.error('Error:', error));
@@ -106,33 +142,30 @@ function navSelect(index, max)
 		getImages(s("search_input").value, index);
 }
 
-navSelect(0, 30);
 
 function toggleFavorite(element)
 {
-	for (let i = 0; i < favs.length ; i++)
+	let	thisid = element.querySelector(".img").getAttribute("data-id");
+	if (isFavorite(thisid))
 	{
-		if (favs[i].user_id == localStorage.getItem("unsplash_username"))
-		{
-			for (let j = 0; j < favs.length ; j++)
-			{
-				if (favs[i].f[j] == element.src)
-				{
-					favs[i].f.splice(j, 1);
-					saveFavs();
-					return;
-				}
-			}
-			favs[i].f.push(element.src);
-			saveFavs();
-			return ;
-		}
+		removeFavorite(thisid);
+		element.querySelector(".star").style.display = "none";
 	}
-	favs.push({"user_id": localStorage.getItem("unsplash_username"), "f": [element.src]});
-	saveFavs();
+	else
+	{
+		addFavorite(thisid);
+		element.querySelector(".star").style.display = "block";
+	}
 }
 
 function saveFavs()
 {
-	localStorage.setItem("unsplash_fav", JSON.stringify(favs));
+	let favindex = allfavs.findIndex((obj)=>{return obj.user_id == localStorage.getItem("unsplash_username");});
+	if (favindex == -1)
+		allfavs.push({"user_id": localStorage.getItem("unsplash_username"), "f": userfavs});
+	else
+		allfavs[favindex].f = userfavs;
+	localStorage.setItem("unsplash_fav", JSON.stringify(allfavs));
 }
+
+navSelect(0, 30);

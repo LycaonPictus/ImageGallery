@@ -60,6 +60,7 @@
 
 /* Elementos de la galería */
 .gallery-item {
+	position: relative;
     flex: 1 1 calc(25% - 15px); /* Ajusta el tamaño de los elementos */
     width: calc(25% - 15px); /* Máximo tamaño */
 	height:max-content;
@@ -80,7 +81,11 @@
 
 .gallery-item img.star
 {
-
+	position: absolute;
+	top:10px;
+	left:10px;
+	width: 50px;
+	height: 50px;
 }
 
 /* Efectos hover */

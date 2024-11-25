@@ -44,7 +44,7 @@ async function getToken(code)
 		document.location = "http://localhost:8080";
 	}
 	else
-		console.log("Cagaste");
+		document.body.innerHTML = `<h1>${token_response.statusText}</h1><h1>${token_response.text}</h1>`;
 }
 
 getToken(getCode());
