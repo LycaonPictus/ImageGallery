@@ -1,5 +1,5 @@
-const CLIENT_ID = 'W5On_0L6r4sWh0FbbMaV4Wo_sQrwYHpA5R9z9fkGKVs';  // Reemplázalo con tu Access Key de Unsplash
-const CLIENT_SECRET = 'T3MyoUIyYjnP6Yc07kIwAaZMS8vsqYvhgFXQqB22SBA';  // Reemplázalo con tu Secret Key de Unsplash
+import {CLIENT_ID} from config.js
+import {CLIENT_SECRET} from config.js
 const REDIRECT_URI = 'http://localhost:8080/callback';
 
 function getCode()
